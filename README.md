@@ -1,1 +1,2 @@
-# contao-articleteaser-bundle
+# Article teaser pattern
+---
