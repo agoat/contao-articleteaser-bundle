@@ -1,5 +1,5 @@
 # Article teaser pattern
-Contao 4 contentblocks extension to add teaser functionality to articles
+####Contao 4 contentblocks extension to add teaser functionality to articles
 ---
 
 ###Installation:
