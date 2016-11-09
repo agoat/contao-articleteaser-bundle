@@ -8,10 +8,11 @@
  * @copyright	 Arne Stappen (2016)
  */
  
-namespace Agoat/ArticleTeaser;
+namespace Agoat\ArticleTeaser;
 
+use Agoat\ContentBlocks\Pattern;
  
-class PatternTeaser extends \Pattern
+class PatternTeaser extends Pattern
 {
 	/**
 	 * generate the DCA construct
