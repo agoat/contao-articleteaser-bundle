@@ -9,9 +9,9 @@
  * @copyright	 Arne Stappen (2016)
  */
 
-namespace Agoat/ArticleTeaser;
+namespace Agoat\ArticleTeaser;
 
-use Contao/Frontend;
+use Contao\Frontend;
 
 
 
