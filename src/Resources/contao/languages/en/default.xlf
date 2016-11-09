@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+	<file datatype="php" original="system/modules/patternTeaser/languages/en/default.php" source-language="en">
+		<body>
+			<trans-unit id="MOD.patternTeaser">
+				<source>Content block element teaser settings (Pattern)</source>
+			</trans-unit>
+
+			<trans-unit id="CTP.teaser.0">
+				<source>Teaser</source>
+			</trans-unit>
+			<trans-unit id="CTP.teaser.1">
+				<source>Insert elements teaser visibility settings.</source>
+			</trans-unit>
+
+
+		</body>
+	</file>
+</xliff>
