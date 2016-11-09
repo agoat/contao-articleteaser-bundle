@@ -24,5 +24,5 @@ $GLOBALS['TL_CTP_NA']['multipattern'][] = 'teaser';
 /**
  * HOOK
  */
-$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('Teaser', 'checkVisibility'); 
+$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('Agoat\\ArticleTeaser\\Teaser', 'checkVisibility'); 
 
