@@ -20,24 +20,29 @@ class Teaser extends Frontend
 	// isVisible Hook
 	public function checkVisibility($objElement, $blnIsVisible) 
 	{ 
-		// direct article view
-		if (($objElement->ptable == "tl_article" && \Input::get('articles')) || 
-			($objElement->ptable == "tl_news" && \Input::get('items')))
+		if (TL_MODE == 'FE')
 		{
-
-			if ($objElement->teaser == 'teaser')
+			// direct article view
+			if (($objElement->ptable == "tl_article" && \Input::get('articles')) || 
+				($objElement->ptable == "tl_news" && \Input::get('items')))
 			{
-				$blnIsVisible = false;
-			}
 
-		}
-		else
-		{
-			if ($objElement->teaser == 'article')
-			{
-				$blnIsVisible = false;
+				if ($objElement->teaser == 'teaser')
+				{
+					$blnIsVisible = false;
+				}
+
 			}
+			else
+			{
+				if ($objElement->teaser == 'article')
+				{
+					$blnIsVisible = false;
+				}
+			}
+			
 		}
+		
 		return $blnIsVisible;
 	}
 }

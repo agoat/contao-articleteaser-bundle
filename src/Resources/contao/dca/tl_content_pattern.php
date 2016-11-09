@@ -8,6 +8,9 @@
  * @copyright	 Arne Stappen (2016)
  */
  
+ 
+$GLOBALS['TL_DCA']['tl_content_pattern']['config']['onsubmit_callback'][] = array('tl_content_pattern_teaser', 'saveTeaser');
+
 /**
  * Palettes
  */
@@ -31,5 +34,41 @@ $GLOBALS['TL_DCA']['tl_content_pattern']['fields']['canChangeTeaser'] = array
 	'eval'                    => array('tl_class' => 'w50 m12'),
 	'sql'                     => "varchar(1) NOT NULL default ''"
 );
+
+
+
+
+/**
+ * Provide miscellaneous methods that are used by the data configuration array.
+ *
+ * @author Arne Stappen (aGoat) <https://github.com/agoat>
+ */
+class tl_content_pattern_teaser extends Backend
+{
+
+	/**
+	 * Import the back end user object
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->import('BackendUser', 'User');
+	}
+
+	public function saveTeaser ($dc)
+	{
+		$db = Database::getInstance();
+					
+		// change predefined groups
+		if ($dc->activeRecord->type == 'teaser' && !$dc->activeRecord->canChangeTeaser)
+		{
+			// save alias to database
+			$db->prepare("UPDATE tl_content SET teaser=? WHERE type=(SELECT alias FROM tl_content_blocks WHERE id=?)")
+			   ->execute($dc->activeRecord->teaser, $dc->activeRecord->pid);
+		
+		}
+	}
+
+}
 
 

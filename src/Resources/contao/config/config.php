@@ -12,7 +12,7 @@
 /**
  * Content pattern
  */
-$GLOBALS['TL_CTP']['element']['teaser'] = array('teaser' => 'PatternTeaser');
+$GLOBALS['TL_CTP']['element']['teaser'] = 'Agoat\ArticleTeaser\PatternTeaser';
 
 
 /**
