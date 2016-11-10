@@ -8,7 +8,7 @@
  * @license LGPL-3.0+
  */
  
-namespace Agoat\ArticleTeaserBundle;
+namespace Agoat\TeaserPatternBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -17,6 +17,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Arne Stappen <https://github.com/agoat>
  */
-class AgoatArticleTeaserBundle extends Bundle
+class AgoatTeaserPatternBundle extends Bundle
 {
 }
