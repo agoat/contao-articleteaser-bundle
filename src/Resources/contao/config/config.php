@@ -12,7 +12,7 @@
 /**
  * Content pattern
  */
-$GLOBALS['TL_CTP']['element']['teaser'] = 'Agoat\ArticleTeaser\PatternTeaser';
+$GLOBALS['TL_CTP']['element']['teaser'] = 'Agoat\TeaserPattern\PatternTeaser';
 
 
 /**
@@ -24,5 +24,5 @@ $GLOBALS['TL_CTP_NA']['multipattern'][] = 'teaser';
 /**
  * HOOK
  */
-$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('Agoat\\ArticleTeaser\\Teaser', 'checkVisibility'); 
+$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('Agoat\\TeaserPattern\\Teaser', 'checkVisibility'); 
 
