@@ -1,7 +1,7 @@
 {
-    "name": "agoat/articleteaser-bundle",
+    "name": "agoat/teaserpattern-bundle",
     "type": "contao-bundle",
-    "description": "Contao Article Teaser extension",
+    "description": "Contao Contentblocks Teaser Pattern",
     "license": "LGPL-3.0+",
     "authors": [
         {
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Agoat\\ArticleTeaserBundle\\": "src/"
+            "Agoat\\TeaserPatternBundle\\": "src/"
         },
         "classmap": [
             "src/Resources/contao"
@@ -34,7 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Agoat\\ArticleTeaserBundle\\Test\\": "tests/"
+            "Agoat\\TeaserPatternBundle\\Test\\": "tests/"
         }
     }
 }
