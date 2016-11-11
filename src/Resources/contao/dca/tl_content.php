@@ -35,42 +35,55 @@ class tl_content_teaser extends Backend
 	// panel_callback
 	public function generatePreviewFilter($dc) 
 	{ 
-		$session = $this->Session->getData();
-		$filter = 'tl_content_'.CURRENT_ID;
+		/** @var SessionInterface $objSession */
+		$objSession = \System::getContainer()->get('session');
+		
+		/** @var AttributeBagInterface $objSessionBag */
+		$objSessionBag = $objSession->getBag('contao_backend');
+		
+		$filter = $objSessionBag->get('filter');
+		$preview = $filter['tl_content_'.CURRENT_ID]['preview'];
 
 		return '<div class="tl_filter tl_subpanel"><strong>' . $GLOBALS['TL_LANG']['tl_content']['teaserPreview'] . '</strong>
 <select name="teaserpreview" id="teaserpreview" class="tl_select" onchange="this.form.submit()">
 <option value="">-</option>
-<option value="teaser"' . (($session['filter'][$filter]['preview'] == 'teaser')? ' selected="selected"' : '') . '>' . $GLOBALS['TL_LANG']['tl_content']['teaserView'] . '</option>
-<option value="article"' . (($session['filter'][$filter]['preview'] == 'article')? ' selected="selected"' : '') . '>' . $GLOBALS['TL_LANG']['tl_content']['articleView'] . '</option>
+<option value="teaser"' . (($preview == 'teaser')? ' selected="selected"' : '') . '>' . $GLOBALS['TL_LANG']['tl_content']['teaserView'] . '</option>
+<option value="article"' . (($preview == 'article')? ' selected="selected"' : '') . '>' . $GLOBALS['TL_LANG']['tl_content']['articleView'] . '</option>
 </select></div>';
 	}
 		
 	// onload_callback
 	public function teaserPreview($dc) 
 	{ 
-		$session = $this->Session->getData();
-		$filter = 'tl_content_'.CURRENT_ID;
+		/** @var SessionInterface $objSession */
+		$objSession = \System::getContainer()->get('session');
+		
+		/** @var AttributeBagInterface $objSessionBag */
+		$objSessionBag = $objSession->getBag('contao_backend');
+
+		$filter = $objSessionBag->get('filter');
+		$preview = $filter['tl_content_'.CURRENT_ID]['preview'];
 
 		if (\Input::post('FORM_SUBMIT') == 'tl_filters')
 		{
 			// Validate the user input
 			if (in_array(\Input::post('teaserpreview'), array('teaser', 'article')))
 			{
-				$session['filter'][$filter]['preview'] = \Input::Post('teaserpreview');
+				$preview = \Input::Post('teaserpreview');
 			}
 			else
 			{
-				unset($session['filter'][$filter]['preview']);
+				unset($preview);
 			}
 			
-			$this->Session->setData($session);
+			$filter['tl_content_'.CURRENT_ID]['preview'] = $preview;
+			$objSessionBag->set('filter', $filter);
 		}
 
 		// apply filter if preview mode is set
-		if ($session['filter'][$filter]['preview'])
+		if ($preview)
 		{
-			$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['filter']['teaser'] = array("(teaser='any' OR teaser=?)", $session['filter'][$filter]['preview']);
+			$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['filter']['teaser'] = array("(teaser='any' OR teaser=?)", $preview);
 		}
 	}
 }
