@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['teaser'] = array
 	'options'			=> array('any', 'teaser', 'article'),
 	'reference'			=> &$GLOBALS['TL_LANG']['tl_content_teaser'],
 	'eval'				=> array('tl_class'=>'w50 clr',),
-	'sql'				=> "varchar(8) NOT NULL default ''"
+	'sql'				=> "varchar(8) NOT NULL default 'any'"
 );
 
 
