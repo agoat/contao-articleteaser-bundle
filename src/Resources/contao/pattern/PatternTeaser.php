@@ -80,7 +80,7 @@ class PatternTeaser extends Pattern
 			$articleTeaser = new ArticleTeaser();
 			$this->writeToTemplate($articleTeaser->generateLink($this->Template->pid));
 		}
-		elseif ($this->ptable == 'tl_news')
+		elseif ($this->Template->ptable == 'tl_news')
 		{
 			$newsTeaser = new NewsTeaser();
 			$this->writeToTemplate($newsTeaser->generateLink($this->Template->pid));

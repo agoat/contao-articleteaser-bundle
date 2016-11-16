@@ -13,6 +13,8 @@ namespace Agoat\TeaserPattern;
 
 use Contao\News;
 
+
+
 class NewsTeaser extends News
 {
 	protected $strLink = false;
@@ -25,20 +27,9 @@ class NewsTeaser extends News
 		}
 		
 		$objNews = \NewsModel::findByPk($intId);
-		$objPage = \PageModel::findWithDetails($objNews->getRelated('pid')->jumpTo);
-				
-		// A jumpTo page is set but does no longer exist (see #5781)
-		if ($objPage === null)
-		{
-			return '';
-		}
-		else
-		{
-			$strUrl = $this->generateFrontendUrl($objPage->row(), ((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objPage->language);
-		}
-				
-		$this->strLink = parent::getLink($objNews, $strUrl);
 		
+		$this->strLink = $this->generateNewsUrl($objNews, true);
+
 		return $this->strLink;
 	}
 }

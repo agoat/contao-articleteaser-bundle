@@ -32,7 +32,7 @@ class ArticleTeaser extends Frontend
 		$article = (!\Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id;
 		$href = '/articles/' . (($objArticle->inColumn != 'main') ? $objArticle->inColumn . ':' : '') . $article;
 		
-		$this->strLink = $this->generateFrontendUrl($objPage->row(), $href);
+		$this->strLink = $objPage->getFrontendUrl($href);
 
 		return $this->strLink;		
 	}
