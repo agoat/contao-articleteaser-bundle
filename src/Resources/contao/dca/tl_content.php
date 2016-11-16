@@ -13,6 +13,9 @@
 $GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('tl_content_teaser', 'teaserPreview');
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['panel_callback']['teaser'] = array('tl_content_teaser', 'generatePreviewFilter');
 
+$GLOBALS['TL_DCA']['tl_content']['fields']['type']['save_callback'][] = array('tl_content_teaser', 'correctTeaserStatus');
+
+
 // add Teaser preview option
 $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['panelLayout'] = str_replace('filter', 'teaser;filter', $GLOBALS['TL_DCA']['tl_content']['list']['sorting']['panelLayout']);
 
@@ -85,5 +88,30 @@ class tl_content_teaser extends Backend
 		{
 			$GLOBALS['TL_DCA']['tl_content']['list']['sorting']['filter']['teaser'] = array("(teaser='any' OR teaser=?)", $preview);
 		}
+	}
+	
+	
+	// onsubmit_callback
+	public function correctTeaserStatus($varValue, $dc) 
+	{ 
+		$db = Database::getInstance();
+
+		$bolNoTeaser = true;
+		
+		foreach(\ContentPatternModel::findByPid(\ContentBlocksModel::findByAlias($varValue)->id) as $objPattern)
+		{
+			if ($objPattern->type == 'teaser')
+			{
+				$bolNoTeaser = false;
+			}
+		}
+
+		if ($bolNoTeaser)
+		{
+			$db->prepare("UPDATE tl_content SET teaser=\"any\" WHERE id=?")
+			   ->execute($dc->id);
+		}
+		
+		return $varValue;
 	}
 }
