@@ -18,6 +18,7 @@ $GLOBALS['TL_CTP']['element']['teaser'] = 'Agoat\TeaserPattern\PatternTeaser';
 /**
  * Content pattern not allowed in sub pattern
  */
+$GLOBALS['TL_CTP_NA']['subpattern'][] = 'teaser';
 $GLOBALS['TL_CTP_NA']['multipattern'][] = 'teaser';
 
 
