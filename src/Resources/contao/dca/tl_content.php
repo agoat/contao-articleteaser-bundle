@@ -98,11 +98,18 @@ class tl_content_teaser extends Backend
 
 		$bolNoTeaser = true;
 		
-		foreach(\ContentPatternModel::findByPid(\ContentBlocksModel::findByAlias($varValue)->id) as $objPattern)
+		$objContentBlock = \ContentBlocksModel::findByAlias($varValue);
+
+		if ($objContentBlock !== null)
 		{
-			if ($objPattern->type == 'teaser')
+			$colContentPattern = \ContentPatternModel::findByPid($objContentBlock->id);
+			
+			foreach(\ContentPatternModel::findByPid(\ContentBlocksModel::findByAlias($varValue)->id) as $objPattern)
 			{
-				$bolNoTeaser = false;
+				if ($objPattern->type == 'teaser')
+				{
+					$bolNoTeaser = false;
+				}
 			}
 		}
 
@@ -111,7 +118,7 @@ class tl_content_teaser extends Backend
 			$db->prepare("UPDATE tl_content SET teaser=\"any\" WHERE id=?")
 			   ->execute($dc->id);
 		}
-		
+	
 		return $varValue;
 	}
 }
