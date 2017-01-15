@@ -29,7 +29,7 @@ class ArticleTeaser extends Frontend
 		$objArticle = \ArticleModel::findByPk($intId);
 		$objPage = \PageModel::findWithDetails($objArticle->pid);
 		
-		$article = (!\Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id;
+		$article = $objArticle->alias ?: $objArticle->id;
 		$href = '/articles/' . (($objArticle->inColumn != 'main') ? $objArticle->inColumn . ':' : '') . $article;
 		
 		$this->strLink = $objPage->getFrontendUrl($href);
