@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.6",
         "symfony/framework-bundle": "~2.8|~3.0",
         "contao/core-bundle": "^4.2",
         "agoat/contao-contentblocks": "^1.0"
